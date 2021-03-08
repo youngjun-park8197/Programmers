@@ -1,5 +1,3 @@
-### need correction
-
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -7,20 +5,43 @@
 // 파라미터로 주어지는 문자열은 const로 주어집니다. 변경하려면 문자열을 복사해서 사용하세요.
 char* solution(const char* s) {
     // return 값은 malloc 등 동적 할당을 사용해주세요. 할당 길이는 상황에 맞게 변경해주세요.
-    char* answer = (char*)malloc(1);
-    char* s_copy = (char*)malloc(1);
-    char* temp = (char*)malloc(1);
-    int left = 0; 
-    int right = strlen(s_copy) - 1;
+    
+    char* s_copy = (char*)malloc(sizeof(char)*strlen(s));
+    char* temp = (char*)malloc(sizeof(char)*strlen(s)); 
+    
     strcpy(s_copy, s);
     
-    for(int i = 0; i < strlen(s_copy) / 2; i++) {
-        temp[i] = s_copy[left];
-        s_copy[left] = s_copy[right - i];
-        s_copy[right - i] = temp[i];
-    } 
-
+    for(int i = 0; i < strlen(s_copy); i++) {
+        for(int j = 1 + i; j < strlen(s_copy); j++) {
+            if(s_copy[j] > s_copy[i]) {
+                temp[i] = s_copy[i];
+                s_copy[i] = s_copy[j];
+                s_copy[j] = temp[i];
+            }
+        }
+    }
+    
+    char* answer = (char*)malloc(sizeof(char)*strlen(s_copy));
+    
     strcpy(answer, s_copy);
     
     return answer;
 }
+
+
+#######################################################################################
+
+!! 동적 할당에 대한 이해가 필요
+
+* 문자열 내림차순으로 배치하기
+
+* 문제 설명
+문자열 s에 나타나는 문자를 큰것부터 작은 순으로 정렬해 새로운 문자열을 리턴하는 함수, solution을 완성해주세요.
+s는 영문 대소문자로만 구성되어 있으며, 대문자는 소문자보다 작은 것으로 간주합니다.
+
+* 제한 사항
+str은 길이 1 이상인 문자열입니다.
+
+* 입출력 예
+    s	     return
+"Zbcdefg"   "gfedcbZ"
