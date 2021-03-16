@@ -1,0 +1,28 @@
+#include <string>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+string solution(vector<string> participant, vector<string> completion) {
+    string answer = "";
+    
+    // 중복 제거를 위해 먼저 배열을 정렬한다.
+    sort(participant.begin(), participant.end()); 
+    
+    // participant 배열에 동명이인이 있을 경우 중복 제거
+    participant.erase(unique(participant.begin(), participant.end()), participant.end());
+
+    // 정렬된 participant 배열과 completion 배열의 원소값 비교 
+    for(int i = 0; i < participant.size(); i++) {
+        cout << participant[i] << ' ';
+        for(int j = 0; j < completion.size(); j++) {
+            if(participant[i] == completion[j]) {
+                
+            }
+        }
+    }
+    return answer;
+}
+
