@@ -7,7 +7,11 @@ using namespace std;
 
 string solution(vector<string> participant, vector<string> completion) {
     string answer = "";
+    vector<string> temp;
     
+    temp.clear();
+    temp.assign(participant.begin(), participant.end());
+
     // 중복 제거를 위해 먼저 배열을 정렬한다.
     sort(participant.begin(), participant.end()); 
     
@@ -15,14 +19,9 @@ string solution(vector<string> participant, vector<string> completion) {
     participant.erase(unique(participant.begin(), participant.end()), participant.end());
 
     // 정렬된 participant 배열과 completion 배열의 원소값 비교 
-    for(int i = 0; i < participant.size(); i++) {
-        cout << participant[i] << ' ';
-        for(int j = 0; j < completion.size(); j++) {
-            if(participant[i] == completion[j]) {
-                
-            }
-        }
+    for(int i = 0; i < temp.size(); i++) {
+        cout << temp[i] << ' ';
     }
+    
     return answer;
 }
-
