@@ -9,18 +9,27 @@ string solution(vector<string> participant, vector<string> completion) {
     string answer = "";
     vector<string> temp;
     
-    temp.clear();
-    temp.assign(participant.begin(), participant.end());
+    //temp.clear();
+    //temp.assign(participant.begin(), participant.end());
 
-    // 중복 제거를 위해 먼저 배열을 정렬한다.
+    // 먼저 배열을 정렬한다.
     sort(participant.begin(), participant.end()); 
     
     // participant 배열에 동명이인이 있을 경우 중복 제거
-    participant.erase(unique(participant.begin(), participant.end()), participant.end());
+    //participant.erase(unique(participant.begin(), participant.end()), participant.end());
 
-    // 정렬된 participant 배열과 completion 배열의 원소값 비교 
-    for(int i = 0; i < temp.size(); i++) {
-        cout << temp[i] << ' ';
+    // participant 배열과 completion 배열의 원소값 비교 
+    for(int i = 0; i < participant.size(); i++) {
+        for(int j = i + 1; j < participant.size(); j++) {
+            // participant 배열에 있는 동명이인 인원 수를 카운트
+            int cnt_p = count(participant.begin(), participant.end(), participant[i]);
+            
+            // 동명이인 수가 2 이상이고 동명이인이 정말 있다면
+            if(cnt_p >= 2 && participant[i] == participant[j]) {
+                // 동명이인 출력
+                answer = participant[i];
+            }
+        }
     }
     
     return answer;
