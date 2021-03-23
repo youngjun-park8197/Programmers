@@ -1,0 +1,47 @@
+!! 주어진 문제는 해결했으나, 다른 테스트 케이스에서는 실패
+
+#include <string>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+vector<int> solution(vector<int> array, vector<vector<int>> commands) {
+    vector<int> answer;
+    
+    vector<int> idx_i;  // i 값 벡터 저장
+    vector<int> idx_j;  // j 값 벡터 저장
+    vector<int> idx_k;  // k 값 벡터 저장
+    
+    vector<int> temp;
+    
+    for(int i = 0; i < commands.size(); i++) {
+        idx_i.push_back(commands[i][0]);
+        idx_j.push_back(commands[i][1]);
+        idx_k.push_back(commands[i][2]); 
+    }
+    
+    int index = 0;
+    
+    while(index < 3) {
+        // commands의 i, j 인덱스에 해당하는 값을 array의 인덱스로 설정하고 그 범위 내의 값을 temp에 적재
+        temp.assign(array.begin() + idx_i[index] - 1, array.begin() + idx_j[index]);
+        
+        // 적재한 temp 배열 값 정렬
+        sort(temp.begin(), temp.end());
+        
+        // temp 배열 내에서 k번째 있는 값을 찾음
+        for(int i = 0; i < temp.size(); i++) {
+            if(i == idx_k[index] - 1) {
+                answer.push_back(temp[i]);
+            }
+        }
+        temp.erase(temp.begin(), temp.end());
+        index++;
+    }    
+    return answer;
+}
+
+#####################################################################################################
+
