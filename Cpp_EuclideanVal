@@ -43,7 +43,7 @@ vector<int> solution(int n, int m) {
 입출력 예
   n	  m	  return
   3	  12    [3, 12]
-  2	  5 [1, 10]
+  2	  5     [1, 10]
 
 * 입출력 예 #1
 위의 설명과 같습니다.
